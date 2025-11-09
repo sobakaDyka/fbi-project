@@ -153,7 +153,7 @@ const startDealSequence = function () {
     ropeQuestionBlock.innerHTML = `<img alt="rope-tight" class="rope" src="img/roup-2.png" />`;
     threadBtn.classList.add('hidden');
 
-    await wait(2000);
+    await wait(1000);
 
     ropeQuestionBlock.innerHTML = `<img alt="rope-tight" class="rope" src="img/roup-3.png" />`;
 
@@ -163,11 +163,11 @@ const startDealSequence = function () {
     sectionRope.classList.add('hidden');
     sectionError.classList.remove('hidden');
 
-    await wait(3000);
+    await wait(500);
 
     sectionError.classList.add('hidden');
     loadingEyesScreen.classList.remove('hidden');
-    await wait(5000);
+    await wait(8000);
 
     loadingEyesScreen.classList.add('hidden');
 
