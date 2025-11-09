@@ -55,6 +55,10 @@ const startTimer = function () {
 
 ////////////////////////////////
 
+const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+////////////////////////////////
+
 const autorizationScreen = function () {
   time = START_TIME;
   clearInterval(timerIntervalID);
@@ -110,6 +114,68 @@ const renderFolders = function (allCases) {
 };
 
 /// RED STATE ВРОДЄЄ РАБОТАЄ
+////////////////////////////
+
+// const startDealSequence = async function () {
+//   allFiles.classList.add('hidden');
+
+//   sectionRope.classList.remove('hidden');
+//   await wait(2500);
+
+//   sectionRope.classList.add('hidden');
+//   sectionError.classList.remove('hidden');
+//   await wait(2500);
+
+//   sectionError.classList.add('hidden');
+//   loadingEyesScreen.classList.remove('hidden');
+//   await wait(3500);
+
+//   loadingEyesScreen.classList.add('hidden');
+
+//   redState();
+// };
+///////////////////////////
+
+const startDealSequence = function () {
+  allFiles.classList.add('hidden');
+  allFilesBtn.classList.add('hidden');
+  sectionRope.classList.remove('hidden');
+
+  const ropeQuestionBlock = document.querySelector('.rope-question-block');
+
+  ropeQuestionBlock.innerHTML = `<img alt="rope-tight " class="rope" src="img/roup-1.png" />
+          <button class="thread-btn hand-notes">CUT THE THREAD</button>
+        </div>`;
+
+  const threadBtn = document.querySelector('.thread-btn');
+
+  threadBtn.addEventListener('click', async function () {
+    ropeQuestionBlock.innerHTML = `<img alt="rope-tight" class="rope" src="img/roup-2.png" />`;
+    threadBtn.classList.add('hidden');
+
+    await wait(2000);
+
+    ropeQuestionBlock.innerHTML = `<img alt="rope-tight" class="rope" src="img/roup-3.png" />`;
+
+    await wait(2000);
+
+    redState();
+    sectionRope.classList.add('hidden');
+    sectionError.classList.remove('hidden');
+
+    await wait(3000);
+
+    sectionError.classList.add('hidden');
+    loadingEyesScreen.classList.remove('hidden');
+    await wait(5000);
+
+    loadingEyesScreen.classList.add('hidden');
+
+    allFiles.classList.remove('hidden');
+  });
+};
+
+///////////////////////////
 
 const redState = function () {
   const allFilesId = document.querySelectorAll('.all-files-id');
@@ -141,9 +207,10 @@ const redState = function () {
   // redBtnAdd.classList.remove('hidden');
 };
 
-allFilesBtn.addEventListener('click', function () {
-  redState();
-});
+allFilesBtn.addEventListener('click', startDealSequence);
+// allFilesBtn.addEventListener('click', function () {
+//   redState();
+// });
 ///////////////////// Data ////////////////////
 const account1 = {
   owner: 'Kim Jongin',
