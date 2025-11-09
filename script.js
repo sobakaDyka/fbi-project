@@ -1,5 +1,6 @@
 'use strict';
 ///////////////////// Elements ////////////////////
+let isRedStateActive = false; // пізда тобі мразь йобана
 
 const loginScreen = document.querySelector('.login-screen');
 const allFiles = document.querySelector('.all-files');
@@ -21,6 +22,11 @@ const allFilesFelcomeMessage = document.querySelector(
 const anketa = document.querySelector('.anketa');
 const allFilesFolderPack = document.querySelector('.all-files-folder-pack');
 
+///// turn red
+const allFilesBtn = document.querySelector('.all-files-btn');
+// const allFilesId = document.querySelectorAll('.all-files-id');
+const allFilesHeader = document.querySelector('.all-files-header');
+
 ////////////////////////////////
 
 const autorizationScreen = function () {
@@ -30,6 +36,18 @@ const autorizationScreen = function () {
   sectionRope.classList.add('hidden');
   sectionError.classList.add('hidden');
   loadingEyesScreen.classList.add('hidden');
+
+  allFilesBtn.classList.remove('hidden');
+  allFilesHeader.classList.remove('red-back');
+
+  const allFilesId = document.querySelectorAll('.all-files-id');
+  allFilesId.forEach(id => id.classList.remove('red-font'));
+
+  allFilesCases.forEach(function (c) {
+    c.imgDefault = c.originalImgDefault;
+  }); /// отут треба знов дефолтні зображення, не переписані ХА просто 3 параметр конст в персонК
+
+  isRedStateActive = false;
 };
 
 const showAllFilesScreen = function () {
@@ -59,6 +77,33 @@ const renderFolders = function (allCases) {
 
 /// RED STATE ВРОДЄЄ РАБОТАЄ
 
+const redState = function () {
+  const allFilesId = document.querySelectorAll('.all-files-id');
+  allFilesId.forEach(id => id.classList.add('red-font'));
+
+  allFilesBtn.classList.add('hidden');
+  allFilesHeader.classList.add('red-back');
+
+  // red stae
+  isRedStateActive = true;
+
+  //////////// CASE
+  allFilesCases.forEach(function (c) {
+    c.imgDefault = c.imgRed;
+  });
+
+  // const shinigamiEyesBlock = document.querySelector('.shinigami-eyes-block');
+  // const redCase = document.querySelector('.red-case');
+  // const redBtnAdd = document.querySelector('.red-btn-add');
+
+  // shinigamiEyesBlock.classList.remove('hidden');
+  // redCase.classList.remove('hidden');
+  // redBtnAdd.classList.remove('hidden');
+};
+
+allFilesBtn.addEventListener('click', function () {
+  redState();
+});
 ///////////////////// Data ////////////////////
 const account1 = {
   owner: 'Kim Jongin',
@@ -181,6 +226,7 @@ class Person {
     this.height = height;
     this.imgRed = imgRed;
     this.imgDefault = imgDefault;
+    this.originalImgDefault = imgDefault;
   }
 
   timeToLive() {
@@ -404,17 +450,52 @@ ${personCase.fileNo}
 
   anketa.insertAdjacentHTML('afterbegin', html);
 
+  ///
+  const shinigamiEyesBlock = document.querySelector('.shinigami-eyes-block');
+  const redCase = document.querySelector('.red-case');
+  const redBtnAdd = document.querySelector('.red-btn-add');
+
+  if (!isRedStateActive) {
+    shinigamiEyesBlock.classList.add('hidden');
+    redCase.classList.add('hidden');
+    redBtnAdd.classList.add('hidden');
+  } else {
+    const redNoteFiled = document.querySelector('.red-note-filed');
+    const redBtnAdd = document.querySelector('.red-btn-add');
+
+    // лізу в базу?
+    const savedSentence = localStorage.getItem('savedNote');
+
+    if (savedSentence) {
+      redNoteFiled.value = savedSentence;
+    }
+
+    // let currentSentence;
+    const writeSentence = function () {
+      let currentSentence = redNoteFiled.value;
+
+      // сейв?
+      localStorage.setItem('savedNote', currentSentence);
+
+      console.log(currentSentence);
+    };
+
+    redBtnAdd.addEventListener('click', writeSentence);
+  }
+
+  ///
+
   animateShinigamiEyes();
+
+  const btnBackToLogin = document.querySelector('.back-to-login-btn');
+  const btnBackToFiles = document.querySelector('.back-to-allfiles-btn');
+
+  btnBackToLogin.addEventListener('click', autorizationScreen);
+  btnBackToFiles.addEventListener('click', showAllFilesScreen);
 };
 
-const btnBackToLogin = document.querySelector('.back-to-login-btn');
-const btnBackToFiles = document.querySelector('.back-to-allfiles-btn');
 const exitBtn = document.querySelector('.exit__btn');
-
-btnBackToLogin.addEventListener('click', autorizationScreen);
 exitBtn.addEventListener('click', autorizationScreen);
-
-btnBackToFiles.addEventListener('click', showAllFilesScreen);
 
 // upDateTheCaseFile(allFilesCases[0]);
 
