@@ -1,6 +1,9 @@
 'use strict';
 ///////////////////// Elements ////////////////////
 let isRedStateActive = false; // пізда тобі мразь йобана
+const START_TIME = 300;
+let time = START_TIME;
+let timerIntervalID;
 
 const loginScreen = document.querySelector('.login-screen');
 const allFiles = document.querySelector('.all-files');
@@ -15,7 +18,7 @@ const loginInputPin = document.querySelector('.login__input--pin');
 const btnLogIn = document.querySelector('.login__btn');
 
 // Elements All Files ///
-
+const allFilesTimer = document.querySelector('.all-files-timer');
 const allFilesFelcomeMessage = document.querySelector(
   '.all-files-welcome-message'
 );
@@ -27,9 +30,35 @@ const allFilesBtn = document.querySelector('.all-files-btn');
 // const allFilesId = document.querySelectorAll('.all-files-id');
 const allFilesHeader = document.querySelector('.all-files-header');
 
+////////////////////
+
+const startTimer = function () {
+  clearInterval(timerIntervalID);
+  time = START_TIME;
+
+  const tick = function () {
+    const min = String(Math.trunc(time / 60)).padStart(2, 0);
+    const sec = String(time % 60).padStart(2, 0);
+    allFilesTimer.textContent = `${min}:${sec}`;
+
+    if (time < 0) {
+      clearInterval(timerIntervalID);
+      allFilesTimer.textContent = `CAUGHT YOU!`;
+      autorizationScreen();
+    }
+
+    time--;
+  };
+
+  timerIntervalID = setInterval(tick, 1000); // Зберігаємо ID
+};
+
 ////////////////////////////////
 
 const autorizationScreen = function () {
+  time = START_TIME;
+  clearInterval(timerIntervalID);
+
   loginScreen.classList.remove('hidden');
   allFiles.classList.add('hidden');
   caseSection.classList.add('hidden');
@@ -40,12 +69,17 @@ const autorizationScreen = function () {
   allFilesBtn.classList.remove('hidden');
   allFilesHeader.classList.remove('red-back');
 
+  const detectiveName = document.querySelector('.detective-name');
+  if (detectiveName) detectiveName.classList.remove('red-font');
+
   const allFilesId = document.querySelectorAll('.all-files-id');
   allFilesId.forEach(id => id.classList.remove('red-font'));
 
   allFilesCases.forEach(function (c) {
     c.imgDefault = c.originalImgDefault;
   }); /// отут треба знов дефолтні зображення, не переписані ХА просто 3 параметр конст в персонК
+
+  allFilesTimer.classList.add('hidden');
 
   isRedStateActive = false;
 };
@@ -79,10 +113,16 @@ const renderFolders = function (allCases) {
 
 const redState = function () {
   const allFilesId = document.querySelectorAll('.all-files-id');
+
   allFilesId.forEach(id => id.classList.add('red-font'));
+
+  const detectiveName = document.querySelector('.detective-name');
+  if (detectiveName) detectiveName.classList.add('red-font');
 
   allFilesBtn.classList.add('hidden');
   allFilesHeader.classList.add('red-back');
+  allFilesTimer.classList.remove('hidden');
+  startTimer();
 
   // red stae
   isRedStateActive = true;
@@ -233,6 +273,21 @@ class Person {
     const t = String(Math.round(Math.random() * 888888 + 100000));
     return t;
   }
+
+  saveNote(noteText) {
+    this.#notes = noteText;
+    localStorage.setItem(`note_${this.fileNo}`, noteText);
+  }
+
+  // загрузка ГАВНА
+  getNote() {
+    const savedNote = localStorage.getItem(`note_${this.fileNo}`);
+    if (savedNote) {
+      this.#notes = savedNote;
+      return savedNote;
+    }
+    return this.#notes;
+  }
 }
 
 const misoraNaomi = new Person(
@@ -301,11 +356,18 @@ btnLogIn.addEventListener('click', function (e) {
   loginInputPin.value = ''; /////
 
   const [firstName] = currentAccount.owner.split(' ');
+  const now = new Date();
+  const day = `${now.getDate()}`.padStart(2, 0);
+  const month = now.getMonth() + 1;
+  const year = now.getFullYear();
+  const showCurTime = `${day}/${month}/${year}`;
 
-  allFilesFelcomeMessage.textContent = ` Welcome back, detective ${firstName}!`;
+  // allFilesFelcomeMessage.innerHTML = `Welcome back, detective <span class="detective-name">${firstName}</span> SESSION START: ${showCurTime}`;
+  allFilesFelcomeMessage.innerHTML = `Welcome back, detective <span class="detective-name">${firstName}</span>`;
 
   allFiles.classList.remove('hidden');
   loginScreen.classList.add('hidden');
+  allFilesTimer.classList.add('hidden');
 
   renderFolders(allFilesCases);
 });
@@ -450,37 +512,24 @@ ${personCase.fileNo}
 
   anketa.insertAdjacentHTML('afterbegin', html);
 
-  ///
+  /// ЧЕРВОНИЙ 'РЕЖИМ" ГАГАГА
   const shinigamiEyesBlock = document.querySelector('.shinigami-eyes-block');
   const redCase = document.querySelector('.red-case');
   const redBtnAdd = document.querySelector('.red-btn-add');
+  const redNoteFiled = document.querySelector('.red-note-filed');
 
   if (!isRedStateActive) {
     shinigamiEyesBlock.classList.add('hidden');
     redCase.classList.add('hidden');
     redBtnAdd.classList.add('hidden');
   } else {
-    const redNoteFiled = document.querySelector('.red-note-filed');
-    const redBtnAdd = document.querySelector('.red-btn-add');
+    redNoteFiled.value = personCase.getNote();
 
-    // лізу в базу?
-    const savedSentence = localStorage.getItem('savedNote');
-
-    if (savedSentence) {
-      redNoteFiled.value = savedSentence;
-    }
-
-    // let currentSentence;
-    const writeSentence = function () {
-      let currentSentence = redNoteFiled.value;
-
-      // сейв?
-      localStorage.setItem('savedNote', currentSentence);
-
-      console.log(currentSentence);
-    };
-
-    redBtnAdd.addEventListener('click', writeSentence);
+    redBtnAdd.addEventListener('click', function () {
+      const currentSentence = redNoteFiled.value;
+      personCase.saveNote(currentSentence);
+      console.log(` ${personCase.fileNo}`);
+    });
   }
 
   ///

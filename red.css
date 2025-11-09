@@ -7,11 +7,22 @@
 .red-font {
   color: rgb(136, 10, 11);
   font-family: 'Reenie Beanie';
+  font-size: 3rem;
+  font-weight: 500;
 }
 
 .red-back {
+  /* font-family: 'Reenie Beanie'; */
   background-color: rgb(136, 10, 11);
   color: rgb(245, 236, 231);
+  /* font-weight: 200;
+  letter-spacing: 1rem; */
+}
+
+.detective-name.red-font {
+  letter-spacing: 0.4rem;
+  font-size: 4.5rem;
+  margin-left: 0.8rem;
 }
 
 /* //////////////////////// LOADING BAR //////////////////////////////// */
