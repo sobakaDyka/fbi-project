@@ -593,12 +593,13 @@ body {
   align-items: center;
   flex-direction: column;
   position: absolute;
-  top: 8rem;
-  right: 5rem;
+  top: 12rem;
+  right: 16rem;
   font-size: 3rem;
-  color: rgb(176, 23, 46);
+  color: rgb(197, 17, 44);
   z-index: 5;
   letter-spacing: 0.4rem;
+  transform: translate(50%, -50%);
 }
 
 /* ...............................................................*/
@@ -617,8 +618,8 @@ body {
   display: inline-block;
   position: relative;
   animation: floatUpDown 2s infinite alternate;
-  -webkit-text-stroke: 0.04rem rgb(80, 6, 6);
-  text-shadow: 2px 2px 4px rgba(255, 3, 3, 0.8);
+  -webkit-text-stroke: 0.04rem rgb(133, 49, 49);
+  text-shadow: 4px 4px 8px rgba(255, 0, 0, 0.8);
 
   /* Затримку 'animation-delay' тепер встановлює JavaScript */
 }

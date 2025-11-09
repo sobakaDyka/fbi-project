@@ -314,7 +314,8 @@ class Person {
     bloodType,
     height,
     imgRed,
-    imgDefault
+    imgDefault,
+    timeToLive
   ) {
     this.fileName = fileName;
     this.fullName = fullName;
@@ -334,12 +335,13 @@ class Person {
     this.imgRed = imgRed;
     this.imgDefault = imgDefault;
     this.originalImgDefault = imgDefault;
+    this.timeToLive = timeToLive;
   }
 
-  timeToLive() {
-    const t = String(Math.round(Math.random() * 888888 + 100000));
-    return t;
-  }
+  // timeToLive() {
+  //   const t = String(Math.round(Math.random() * 888888 + 100000));
+  //   return t;
+  // }
 
   saveNote(noteText) {
     this.#notes = noteText;
@@ -362,19 +364,41 @@ const misoraNaomi = new Person(
   'Naomi Misora',
   'February 11, 1976',
   'American (Japanese-American)',
-  'Engaged (to Raye Penber)',
-  'Special Agent (Former)',
+  'Engaged (Tragically)',
+  'Special Agent (Former), Genius',
   'FBI (On leave); L (Unofficially)',
   'N425JG-7A',
   'Shoko Maki',
   'Black',
   'Black',
-  'On leave of absence',
+  'Missing (Kira Victim)',
   '46 kg',
   'A',
   '171 cm',
   `img/maki-red.jpg`,
-  `img/maki.jpg`
+  `img/maki.jpg`,
+  `53 35 63`
+);
+
+const rem = new Person(
+  'N/A (REM)',
+  'Rem',
+  'Unknown (Shinigami)',
+  'N/A (Shinigami Realm)',
+  'Devoted to Misa Amane',
+  'Shinigami (Overprotective)',
+  'Misa Amane (Attachment)',
+  'SDN-REM',
+  'N/A',
+  'White',
+  'Red',
+  'Deceased (Fell in love)',
+  'Unknown',
+  'N/A',
+  'Unknown',
+  `img/rem-red.jpg`,
+  `img/rem.jpg`,
+  ''
 );
 
 const yagamiLight = new Person(
@@ -382,22 +406,65 @@ const yagamiLight = new Person(
   'Light Yagami',
   'February 28, 1986',
   'Japanese',
-  'Single',
-  'Student (To-Oh University)',
+  `Complicated (Manipulating Misa Amane)`,
+  'Student / "God of the New World"',
   'Japanese Task Force',
   'JTF-001A',
   'Kira',
   'Brown',
   'Brown',
-  'Active',
+  'Active (Unfortunately)',
   '54 kg',
   'A',
   '179 cm',
   `img/y-red.jpg`,
-  `img/y.jpg`
+  `img/y.jpg`,
+  '33 66 03'
 );
 
-const allFilesCases = [misoraNaomi, yagamiLight];
+const lLawliet = new Person(
+  'LAWLIET, L',
+  'L Lawliet',
+  'October 31, 1979',
+  'Unknown',
+  'Married to Justice (and Sugar)',
+  "World's Greatest Detective",
+  'Japanese Task Force (Leader)',
+  'JTF-002L',
+  'Ryuzaki',
+  'Black',
+  'Black',
+  'Deceased',
+  '50 kg (Mostly Sugar)',
+  'Unknown',
+  '179 cm (When standing straight, which is never)',
+  `img/l-red.jpg`,
+  `img/l.jpg`,
+  '52 96 01'
+);
+
+const ryuk = new Person(
+  'N/A (RYUK)',
+  'Ryuk',
+  'Unknown (Shinigami)',
+  'N/A (Shinigami Realm)',
+  'In love with Apples',
+  'Shinigami (Professional Apple Enthusiast)',
+  'Light Yagami (Entertainment Source)',
+  'SDN-RYUK',
+  'N/A',
+  'Black',
+  'Red',
+  'Active (and Bored)',
+  'Unknown',
+  'N/A',
+  '~240 cm',
+  `img/ryuk-red.jpg`,
+  `img/ryuk.jpg`,
+  ''
+);
+
+const allFilesCases = [misoraNaomi, rem, yagamiLight, lLawliet, ryuk];
 console.log(misoraNaomi);
 console.log(yagamiLight);
 
@@ -472,9 +539,7 @@ allFilesFolderPack.addEventListener('click', renderFoldersScreen);
 const upDateTheCaseFile = function (personCase) {
   const html = `<p class="black-field-width"></p>
             <img class="top-secret-img" src="img/top-secret.png" />
-            <p class="title-name-suspect" id="file-name">FILE: ${
-              personCase.fileName
-            }</p>
+            <p class="title-name-suspect" id="file-name">FILE: ${personCase.fileName}</p>
             <div class="start-section grid-2-case">
               <div class="property-column">
                 <p class="property-name">Date of Birth:</p>
@@ -488,9 +553,7 @@ const upDateTheCaseFile = function (personCase) {
               </div>
 
               <div class="value-column">
-                <p class="value-name" id="file-dob">${
-                  personCase.dateOfBirth
-                }</p>
+                <p class="value-name" id="file-dob">${personCase.dateOfBirth}</p>
                 <p class="value-name" id="file-citizenship">
                   ${personCase.citizenship}
                 </p>
@@ -506,25 +569,19 @@ const upDateTheCaseFile = function (personCase) {
 
                 <p class="value-name" id="file-fileNo">${personCase.fileNo}</p>
 
-                <p class="value-name" id="file-codename">${
-                  personCase.codename
-                }</p>
+                <p class="value-name" id="file-codename">${personCase.codename}</p>
               </div>
             </div>
 
             <!-- EYES -->
             <div class="shinigami-eyes-block">
-              <span class="red-eyes-shinigami-timer">${
-                personCase.fullName
-              }</span>
-              <span class="red-eyes-shinigami-timer">${personCase.timeToLive()}</span>
+              <span class="red-eyes-shinigami-timer">${personCase.fullName}</span>
+              <span class="red-eyes-shinigami-timer">${personCase.timeToLive}</span>
             </div>
             <!-- EYES -->
 
             <div class="img-V">
-              <img id="file-image" alt="File photo" src="${
-                personCase.imgDefault
-              }" />
+              <img id="file-image" alt="File photo" src="${personCase.imgDefault}" />
             </div>
 
             <p class="black-field-short">Physical Profile</p>
@@ -550,9 +607,7 @@ const upDateTheCaseFile = function (personCase) {
 
               <div class="value-column">
                 <p class="value-name" id="file-weight">${personCase.weight}</p>
-                <p class="value-name" id="file-blood">${
-                  personCase.bloodType
-                }</p>
+                <p class="value-name" id="file-blood">${personCase.bloodType}</p>
                 <p class="value-name" id="file-height">${personCase.height}</p>
               </div>
             </div>
