@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="image/png" href="img/icon.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Reenie+Beanie&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="red.css" />
+
+    <title>Ghost User</title>
+  </head>
+  <body>
+    <div class="container">
+      <!-- //////// 1 SCREEN ///////-->
+      <div class="login-screen hidden">
+        <p for="user-id" class="welcome-screen program">AUTHORIZATION</p>
+
+        <form class="login-window program">
+          <div class="form-row form">
+            <label id="user-id">USERNAME</label>
+            <input
+              for="user-id"
+              type="text"
+              placeholder="user"
+              maxlength="8"
+              class="login__input login__input--user program"
+            />
+          </div>
+
+          <div class="form-row form">
+            <label id="pin-id">PASSWORD</label>
+            <input
+              id="pin-id"
+              type="text"
+              placeholder="PIN"
+              maxlength="4"
+              class="login__input login__input--pin program"
+            />
+          </div>
+
+          <button class="login__btn program">LOG IN</button>
+        </form>
+      </div>
+      <!-- //////// 1 SCREEN ///////-->
+
+      <!-- //////// 2 SCREEN ///////-->
+      <div class="all-files program">
+        <nav class="all-files-nav">
+          <p class="all-files-welcome-message case">
+            Welcome back, detective A!
+          </p>
+
+          <button class="exit__btn program">
+            <ion-icon name="close-outline" class="icon-window"></ion-icon>
+          </button>
+        </nav>
+
+        <p class="all-files-header">ALL FILES</p>
+
+        <div class="all-files-container program">
+          <div class="all-files-folder-pack grid-3">
+            <!-- <div class="all-files-folder-0">
+              <img
+                class="all-files-folder-img img-0"
+                alt="folder picture"
+                src="img/folder.png"
+              />
+              <p class="all-files-id id-0">ID_37452H62L</p>
+            </div> -->
+          </div>
+        </div>
+
+        <button class="all-files-btn program">MAKE A DEAL?</button>
+        <p class="all-files-timer case program hidden">05:00</p>
+      </div>
+
+      <!-- //////// 2 SCREEN ///////-->
+
+      <!-- //////// 3 SCREEN ///////-->
+      <div class="case-section case hidden">
+        <div class="case-file">
+          <div class="anketa">
+            <!-- <p class="black-field-width"></p>
+            <img class="top-secret-img" src="img/top-secret.png" />
+            <p class="title-name-suspect" id="file-name">FILE: MISORA, NAOMI</p>
+            <div class="start-section grid-2-case">
+              <div class="property-column">
+                <p class="property-name">Date of Birth:</p>
+                <p class="property-name">Citizenship:</p>
+                <p class="property-name">Marital Status:</p>
+                <p class="property-name">Listed as:</p>
+                <p class="property-name mg-btm">Affiliation:</p>
+
+                <p class="property-name">File No.</p>
+                <p class="property-name">Codename:</p>
+              </div>
+
+              <div class="value-column">
+                <p class="value-name" id="file-dob">February 11, 1976</p>
+                <p class="value-name" id="file-citizenship">
+                  American (Japanese-American)
+                </p>
+                <p class="value-name" id="file-status">
+                  Engaged (to Raye Penber)
+                </p>
+                <p class="value-name" id="file-listed">
+                  Special Agent (Former)
+                </p>
+                <p class="value-name mg-btm" id="file-affiliation">
+                  FBI (On leave); L (Unofficially)
+                </p>
+
+                <p class="value-name" id="file-fileNo">N425JG-7A</p>
+
+                <p class="value-name" id="file-codename">Shoko Maki</p>
+              </div>
+            </div>
+
+           
+            <div class="shinigami-eyes-block">
+              <span class="red-eyes-shinigami-timer">Naomi Misora</span>
+              <span class="red-eyes-shinigami-timer">45 52 75</span>
+            </div>
+           
+
+            <div class="img-V">
+              <img id="file-image" alt="File photo" src="img/maki-red.jpg" />
+            </div>
+
+            <p class="black-field-short">Physical Profile</p>
+
+            <div class="start-section grid-4-case">
+              <div class="property-column">
+                <p class="property-name">Hair Color:</p>
+                <p class="property-name">Eye Color:</p>
+                <p class="property-name">Status:</p>
+              </div>
+
+              <div class="value-column">
+                <p class="value-name" id="file-hair">Black</p>
+                <p class="value-name" id="file-eyes">Black</p>
+                <p class="value-name" id="file-status">On leave of absence</p>
+              </div>
+
+              <div class="property-column">
+                <p class="property-name">Weight:</p>
+                <p class="property-name">Blood Type:</p>
+                <p class="property-name">Height:</p>
+              </div>
+
+              <div class="value-column">
+                <p class="value-name" id="file-weight">46 kg</p>
+                <p class="value-name" id="file-blood">A</p>
+                <p class="value-name" id="file-height">171 cm</p>
+              </div>
+            </div>
+
+            <button class="back-to-login-btn case">
+              <ion-icon name="close-outline" class="icon-window"></ion-icon>
+            </button>
+            <button class="back-to-allfiles-btn case">
+              <ion-icon
+                name="arrow-back-outline"
+                class="icon-window"
+              ></ion-icon>
+            </button>
+
+            <div class="red-case">
+              <p class="red-field-short">NOTE</p>
+              <form>
+                <textarea
+                  type="text"
+                  placeholder="Write your sentence..."
+                  maxlength="300"
+                  class="red-note-filed hand-notes"
+                ></textarea
+                >/>
+              </form>
+            </div>
+
+            <button class="red-btn-add hand-notes">ADD</button>
+
+            <p class="value-name case-page-down-id" id="file-fileNo">
+              N425JG-7A
+            </p> -->
+          </div>
+        </div>
+      </div>
+
+      <!-- //////// 3 SCREEN ///////-->
+
+      <!-- //////// 4 SCREEN ///////-->
+      <div class="section-rope hidden">
+        <div class="rope-question-block">
+          <img alt="rope-tight " class="rope" src="img/roup-1.png" />
+          <button class="thread-btn hand-notes">CUT THE THREAD</button>
+        </div>
+
+        <img alt="rope-tight" class="rope hidden" src="img/roup-2.png" />
+        <img alt="rope-tight" class="rope hidden" src="img/roup-3.png" />
+      </div>
+      <!-- //////// 4 SCREEN ///////-->
+
+      <!-- //////// 5 SCREEN ///////-->
+      <div class="section-error program hidden">
+        <div class="error-screen">
+          <p for="user-id" class="welcome-screen program">ERROR</p>
+
+          <button class="exit__btn error-btn program">
+            <ion-icon name="close-outline" class="icon-window"></ion-icon>
+          </button>
+
+          <p class="system-error program">SYSTEM ERROR!</p>
+          <div class="ok-loading-pack">
+            <button class="login__btn ok-btn program">OK</button>
+            <button class="login__btn ok-btn program">OK</button>
+          </div>
+        </div>
+      </div>
+      <!-- //////// 5 SCREEN ///////-->
+
+      <!-- //////// 6 SCREEN ///////-->
+      <div class="loading-eyes-screen hand-notes hidden">
+        <button class="exit__btn eyes-btn">
+          <ion-icon name="close-outline" class="icon-window"></ion-icon>
+        </button>
+        <p for="user-id" class="welcome-screen"></p>
+
+        <p class="eyes-title">LOADING EYES...</p>
+
+        <!-- прогрес бар тіпааа мб буде -->
+        <div class="loading-bar">
+          <div class="loading-bar-progress"></div>
+        </div>
+      </div>
+      <!-- //////// 6 SCREEN ///////-->
+    </div>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+
+    <script src="script.js"></script>
+  </body>
+</html>

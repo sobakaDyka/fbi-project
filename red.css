@@ -1,0 +1,64 @@
+/* //////////////////////////  ALL FILES  ////////////////////////////////// */
+
+.hidden {
+  display: none;
+}
+
+.red-font {
+  color: rgb(136, 10, 11);
+  font-family: 'Reenie Beanie';
+}
+
+.red-back {
+  background-color: rgb(136, 10, 11);
+  color: rgb(245, 236, 231);
+}
+
+/* //////////////////////// LOADING BAR //////////////////////////////// */
+
+/* 1. Контейнер (трек) лоадера */
+.loading-bar {
+  margin-top: 8rem;
+  width: 80%;
+  height: 2.4rem;
+  /* ЦЕЙ ФОН - ЦЕ КОЛІР "ПОРОЖНІХ" СЛОТІВ */
+  background-color: #e0e0e0; /* Світло-сірий */
+  border: 1px solid #25178b;
+  box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.4);
+  padding: 3px;
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+/* 2. ЗАМІНІТЬ .loading-bar-progress на це: */
+.loading-bar-progress {
+  height: 100%;
+  width: 0%; /* Починаємо з 0% */
+
+  /* 3. Малюємо фон (ЗАПОВНЕНІ кубики з проміжками) */
+  /* Це те, що буде "проявлятися" під час анімації */
+  background-image: repeating-linear-gradient(
+    90deg,
+    /* 90deg = горизонтально */ rgb(136, 10, 11) 0px,
+    /* Червоний кубик (шириною 16px) */ rgb(136, 10, 11) 16px,
+
+    transparent 16px,
+    /* Прозорий проміжок (4px) */ transparent 20px
+      /* 16+4 = 20px - повний цикл */
+  );
+
+  /* 4. (НАЙВАЖЛИВІШЕ) Анімація 'fillBar'
+     4 секунди, 'steps(20)' - розбити анімацію на 20 кроків
+  */
+  animation: fillBar 4s steps(10, end) infinite;
+}
+
+/* 5. ЗАМІНІТЬ @keyframes на це: */
+@keyframes fillBar {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}

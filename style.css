@@ -1,0 +1,625 @@
+/*
+colors:
+rgb(245, 236, 231);
+rgb(136, 10, 11);
+
+
+font-style:
+program: Roboto Condensed
+case: Bebas Neue
+hand-notes: Reenie Beanie
+
+
+
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto Condensed', sans-serif;
+  background-color: rgb(63, 63, 63);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100rem;
+  height: 100rem;
+  background-color: rgb(11, 11, 11);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.2rem solid rgb(64, 85, 156);
+}
+
+.program {
+  font-family: 'Roboto Condensed';
+}
+.case {
+  font-family: 'Bebas Neue';
+}
+.hand-notes {
+  font-family: 'Reenie Beanie';
+}
+
+/* //////////////////////////LOG IN SCREEN ///////////////////////////////*/
+.login-screen {
+  height: 20rem;
+  width: 42rem;
+  display: flex;
+  align-items: center;
+  background-color: rgb(245, 236, 231);
+  flex-direction: column;
+  display: flex; /* /// SWITCH */
+  border: 0.2rem solid rgb(64, 85, 156);
+}
+
+.welcome-screen {
+  font-size: 1.6rem;
+  width: 100%;
+  font-weight: 800;
+  height: 1.8rem;
+  background-color: rgb(136, 10, 11);
+  color: rgb(245, 236, 231);
+  align-items: center;
+  display: flex;
+  align-items: center;
+  padding: 1.8rem;
+  border-bottom: 0.2rem solid rgb(65, 105, 185);
+  letter-spacing: 0.04rem;
+}
+
+.login-window {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 2rem;
+  margin-top: 2rem;
+
+  flex-grow: 1; /* Змушує форму заповнити весь вільний простір */
+  width: 100%; /* Щоб форма не виходила за межі екрана: */
+}
+
+.form {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.form-row {
+  margin-left: -2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3rem;
+}
+
+.form-row label {
+  width: 8rem;
+  text-align: right;
+}
+
+.login__input {
+  width: 28rem;
+  height: 2.5rem;
+}
+
+.login__btn {
+  width: 8rem;
+  height: 2.5rem;
+  margin-right: -30rem;
+}
+
+/* //////////////////////////  ALL FILES  ////////////////////////////////// */
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 8rem 0rem;
+}
+
+.all-files-nav {
+  width: 100%;
+  height: 5rem;
+  background-color: rgba(245, 236, 231, 0.913);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  margin-bottom: 5rem;
+  border-bottom: 0.2rem solid rgb(65, 105, 185);
+}
+
+.all-files {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* /// SWITCH */
+}
+
+.all-files-container {
+  padding: 0 5rem 0 5rem;
+  flex-grow: 1;
+}
+.all-files-folder-0 {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.all-files-welcome-message {
+  margin-left: 0.5rem;
+  font-size: 3rem;
+  font-weight: 500;
+  color: rgb(11, 11, 11);
+  letter-spacing: 0.2rem;
+}
+
+.all-files-folder-img {
+  height: 13.7rem;
+  width: 17.2rem;
+  transition: transform 0.3s ease;
+}
+
+.all-files-folder-img:hover {
+  transform: scale(1.1);
+}
+
+.all-files-header {
+  font-size: 6rem;
+  font-weight: 600;
+  color: rgb(245, 236, 231);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5rem;
+  border: 0.2rem solid rgb(64, 85, 156);
+}
+
+.all-files-id {
+  margin-top: 0.4rem;
+  color: rgb(245, 236, 231);
+  font-weight: 400;
+  font-size: 1.6rem;
+}
+
+.all-files-btn {
+  height: 6rem;
+  width: 20rem;
+
+  font-size: 2.4rem;
+  padding: 0 0.2rem;
+  font-weight: 700;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  align-self: center;
+  margin-bottom: 5rem;
+  color: rgb(245, 236, 231);
+  background-color: rgb(11, 11, 11);
+  border: 0.2rem solid rgb(64, 85, 156);
+}
+
+.all-files-btn:hover,
+.all-files-btn:visited {
+  background-color: rgb(136, 10, 11);
+}
+
+.exit__btn {
+  display: inline-block;
+  font-size: 4rem;
+  height: 4rem;
+  width: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+}
+
+.icon-window {
+  color: rgb(11, 11, 11);
+}
+
+.all-files-timer {
+  position: absolute;
+  color: rgb(136, 10, 11);
+  font-size: 10rem;
+  font-weight: 700;
+  z-index: 4;
+
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* //////////////////////////  SECTION ROPE  ////////////////////////////////// */
+
+.section-rope {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.rope {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.rope-question-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
+}
+
+.thread-btn {
+  height: 6rem;
+  width: 22rem;
+
+  font-size: 2.6rem;
+  padding: 0 0.2rem;
+  font-weight: 800;
+
+  color: rgb(11, 11, 11);
+  background-color: rgb(245, 236, 231);
+  border: 0.1rem solid rgb(64, 85, 156);
+  position: absolute;
+
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 37rem;
+}
+
+.thread-btn:hover,
+.thread-btn:visited {
+  background-color: rgb(136, 10, 11);
+  color: rgb(245, 236, 231);
+  border: 0.1rem solid rgb(198, 182, 182);
+}
+
+/* ////////////////////////  SECTION ERROR //////////////////////////////// */
+
+.section-error {
+  height: 110rem;
+  width: 110rem;
+  border: 0.2rem solid rgb(64, 85, 156);
+  position: relative;
+
+  background-image: url('img/loading-eyes-back.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-screen {
+  height: 20rem;
+  width: 42rem;
+
+  background-color: rgb(245, 236, 231);
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border: 0.2rem solid rgb(64, 85, 156);
+  position: relative;
+}
+
+.exit__btn.error-btn {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0.5rem;
+  right: 0.5rem;
+  position: absolute;
+}
+
+.ok-loading-pack {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 6rem;
+  top: 15rem;
+}
+
+.system-error {
+  font-size: 2rem;
+  font-weight: 600;
+  position: absolute;
+  left: 14rem;
+  top: 8rem;
+  letter-spacing: 0.04rem;
+}
+
+/* ////////////////////////  SECTION LOADING //////////////////////////////// */
+
+.loading-eyes-screen {
+  height: 20rem;
+  width: 42rem;
+  display: flex;
+  align-items: center;
+  background-color: rgb(245, 236, 231);
+  flex-direction: column;
+  /* /// SWITCH */
+  border: 0.2rem solid rgb(64, 85, 156);
+  position: relative;
+}
+
+.eyes-title {
+  top: 7rem;
+  left: 5rem;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  font-weight: 600;
+  letter-spacing: 0.4rem;
+}
+
+.exit__btn.eyes-btn {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0.5rem;
+  right: 0.5rem;
+  position: absolute;
+}
+
+/* ///////////////////////////// CASE SECTION /////////////////////////////// */
+
+.grid-2-case {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+  column-gap: 2rem;
+
+  justify-content: start;
+}
+
+.grid-4-case {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  justify-content: start;
+  column-gap: 5rem;
+}
+
+.case-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem;
+}
+
+.case-file {
+  height: 99rem;
+  width: 70rem;
+  background-image: url(/img/doc-background.jpg);
+  /* background-color: aqua; */
+  padding: 3rem;
+  position: relative;
+}
+
+#file-name {
+  font-size: 5rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+#file-image {
+  width: 26.4rem;
+  height: 34rem;
+  margin-bottom: 5rem;
+  position: absolute;
+  top: 8rem;
+  right: 3.5rem;
+}
+
+.black-field-width {
+  background-color: black;
+  height: 4rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.property-name {
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04rem;
+}
+
+.value-name {
+  font-size: 1.8rem;
+  font-weight: 100;
+}
+
+.property-column,
+.value-column {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+.mg-btm {
+  margin-bottom: 4.5rem;
+}
+
+.top-secret-img {
+  height: 24.9rem;
+  width: 28rem;
+  position: absolute;
+  z-index: 4;
+  top: 15rem;
+  left: 20rem;
+  opacity: 0.5;
+}
+
+.black-field-short {
+  margin-top: 1.4rem;
+  background-color: black;
+  color: rgb(245, 236, 231);
+  font-size: 1.8rem;
+  height: 3rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  letter-spacing: 0.25rem;
+  margin-bottom: 2rem;
+}
+
+.case-page-down-id {
+  position: absolute;
+  font-weight: 600;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 1rem;
+}
+
+.red-field-short {
+  margin-top: 1.4rem;
+  background-color: rgb(136, 10, 11);
+  color: rgb(245, 236, 231);
+  font-size: 1.8rem;
+  height: 3rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  letter-spacing: 0.25rem;
+  margin-bottom: 2rem;
+}
+
+.red-note-filed {
+  width: 100%;
+  height: 25rem;
+  background-color: transparent;
+  border: none;
+  padding: 2rem;
+  resize: none;
+  font-size: 2.8rem;
+  text-align: start;
+  font-weight: 400;
+  color: rgb(17, 39, 91);
+}
+
+.red-note-filed:focus {
+  outline: none;
+}
+
+.red-btn-add {
+  position: absolute;
+  width: 8rem;
+  right: 3rem;
+  bottom: 7rem;
+  /* background-color: rgb(136, 10, 11);
+  color: rgb(245, 236, 231); */
+  font-weight: 500;
+  font-size: 3rem;
+  height: 3rem;
+  letter-spacing: 0.25rem;
+  border: none;
+  background-color: transparent;
+  color: rgb(17, 39, 91);
+}
+
+.red-btn-add:hover,
+.red-btn-add:hover {
+  background-color: transparent;
+  color: rgb(136, 10, 11);
+}
+
+.back-to-login-btn {
+  text-align: center;
+  font-size: 2.8rem;
+  height: 3.5rem;
+  width: 3.5rem;
+  color: black;
+  position: absolute;
+  top: 0.4rem;
+  right: -14rem;
+  background-color: rgb(245, 236, 231);
+}
+
+.back-to-allfiles-btn {
+  text-align: center;
+  font-size: 2.8rem;
+  height: 3.5rem;
+  width: 3.5rem;
+  color: rgb(5, 1, 1);
+  position: absolute;
+  top: 0.4rem;
+  left: -14rem;
+  background-color: rgb(245, 236, 231);
+}
+
+.shinigami-eyes-block {
+  font-family: serif;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  top: 8rem;
+  right: 5rem;
+  font-size: 3rem;
+  color: rgb(176, 23, 46);
+  z-index: 5;
+  letter-spacing: 0.4rem;
+}
+
+/* ...............................................................*/
+
+@keyframes floatUpDown {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    transform: translateY(-8px) scale(1.3);
+  }
+}
+
+/* Стиль для КОЖНОЇ літери, яку створив JS */
+.letter {
+  display: inline-block;
+  position: relative;
+  animation: floatUpDown 2s infinite alternate;
+  -webkit-text-stroke: 0.04rem rgb(80, 6, 6);
+  text-shadow: 2px 2px 4px rgba(255, 3, 3, 0.8);
+
+  /* Затримку 'animation-delay' тепер встановлює JavaScript */
+}
+
+/* ...............................................................*/
