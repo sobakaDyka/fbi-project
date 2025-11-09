@@ -20,7 +20,7 @@
   <body>
     <div class="container">
       <!-- //////// 1 SCREEN ///////-->
-      <div class="login-screen hidden">
+      <div class="login-screen">
         <p for="user-id" class="welcome-screen program">AUTHORIZATION</p>
 
         <form class="login-window program">
@@ -52,7 +52,7 @@
       <!-- //////// 1 SCREEN ///////-->
 
       <!-- //////// 2 SCREEN ///////-->
-      <div class="all-files program">
+      <div class="all-files program hidden">
         <nav class="all-files-nav">
           <p class="all-files-welcome-message case">
             Welcome back, detective A!
@@ -67,9 +67,9 @@
 
         <div class="all-files-container program">
           <div class="all-files-folder-pack grid-3">
-            <!-- <div class="all-files-folder-0">
+            <!-- <div class="all-files-folder-0" data-fileno="">
               <img
-                class="all-files-folder-img img-0"
+                class="all-files-folder-img img-0" 
                 alt="folder picture"
                 src="img/folder.png"
               />
@@ -163,15 +163,7 @@
               </div>
             </div>
 
-            <button class="back-to-login-btn case">
-              <ion-icon name="close-outline" class="icon-window"></ion-icon>
-            </button>
-            <button class="back-to-allfiles-btn case">
-              <ion-icon
-                name="arrow-back-outline"
-                class="icon-window"
-              ></ion-icon>
-            </button>
+           
 
             <div class="red-case">
               <p class="red-field-short">NOTE</p>
@@ -192,6 +184,13 @@
               N425JG-7A
             </p> -->
           </div>
+
+          <button class="back-to-login-btn case">
+            <ion-icon name="close-outline" class="icon-window"></ion-icon>
+          </button>
+          <button class="back-to-allfiles-btn case">
+            <ion-icon name="arrow-back-outline" class="icon-window"></ion-icon>
+          </button>
         </div>
       </div>
 

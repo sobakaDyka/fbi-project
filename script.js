@@ -32,13 +32,19 @@ const autorizationScreen = function () {
   loadingEyesScreen.classList.add('hidden');
 };
 
+const showAllFilesScreen = function () {
+  allFiles.classList.remove('hidden');
+  caseSection.classList.add('hidden');
+};
+
 // autorizationScreen();
 
 // allFilesCases
 //  Я ДУМАЮ ЦЕ ДЕСЬ В ЛОГІНІ І ПІСЛЯ РЕНДЕР ФАЙЛС
 const renderFolders = function (allCases) {
+  allFilesFolderPack.innerHTML = '';
   allCases.forEach(function (person, index) {
-    const html = `<div class="all-files-folder-0">
+    const html = `<div class="all-files-folder-0" data-fileno="${person.fileNo}">
               <img
                 class="all-files-folder-img img-${index}"
                 alt="folder picture"
@@ -50,6 +56,8 @@ const renderFolders = function (allCases) {
     allFilesFolderPack.insertAdjacentHTML('afterbegin', html);
   });
 };
+
+/// RED STATE ВРОДЄЄ РАБОТАЄ
 
 ///////////////////// Data ////////////////////
 const account1 = {
@@ -243,6 +251,9 @@ btnLogIn.addEventListener('click', function (e) {
     console.error('Шось не те з інпут данними');
   }
 
+  loginInputUser.value = ''; /// якшо шо зберігає дані логіну
+  loginInputPin.value = ''; /////
+
   const [firstName] = currentAccount.owner.split(' ');
 
   allFilesFelcomeMessage.textContent = ` Welcome back, detective ${firstName}!`;
@@ -255,16 +266,30 @@ btnLogIn.addEventListener('click', function (e) {
 
 //////////////// тут вже папки відренждерені і я налаштовую кліки і підгрузку кейсів
 
-// const allFilesId = document.querySelector('.all-files-id');
-// const allFilesFolderImg = document.addEventListener('click', function () {
-//   if (allFilesId.textContent === allFilesCases[i].fileNo) {
-//     allFiles.classList.add('hidden');
-//     caseSection.classList.remove('hidden');
-//     upDateTheCaseFile(allFilesCases[i]);
-//   } else {
-//     console.error(`Шось в неймінгу папок не стикується МБ Я ЄБУ`);
-//   }
-// });
+const renderFoldersScreen = function (e) {
+  const clickedFolder = e.target.closest('.all-files-folder-0');
+
+  if (!clickedFolder) return;
+
+  // 3. Отримуємо ID з data-атрибута, який ми додали в Кроці 1
+  const clickedFileNo = clickedFolder.dataset.fileno;
+
+  // 4. Знаходимо в масиві allFilesCases об'єкт з цим ID
+  const personCase = allFilesCases.find(p => p.fileNo === clickedFileNo);
+
+  if (personCase) {
+    allFiles.classList.add('hidden');
+    caseSection.classList.remove('hidden');
+
+    anketa.innerHTML = '';
+
+    upDateTheCaseFile(personCase);
+  } else {
+    console.error('Не можу знайти справу для ID:', clickedFileNo);
+  }
+};
+
+allFilesFolderPack.addEventListener('click', renderFoldersScreen);
 
 ///////////////////////////////////////
 
@@ -357,16 +382,6 @@ const upDateTheCaseFile = function (personCase) {
               </div>
             </div>
 
-            <button class="back-to-login-btn case">
-              <ion-icon name="close-outline" class="icon-window"></ion-icon>
-            </button>
-            <button class="back-to-allfiles-btn case">
-              <ion-icon
-                name="arrow-back-outline"
-                class="icon-window"
-              ></ion-icon>
-            </button>
-
             <div class="red-case">
               <p class="red-field-short">NOTE</p>
               <form>
@@ -388,13 +403,24 @@ ${personCase.fileNo}
           </div>`;
 
   anketa.insertAdjacentHTML('afterbegin', html);
+
+  animateShinigamiEyes();
 };
 
-upDateTheCaseFile(allFilesCases[0]);
+const btnBackToLogin = document.querySelector('.back-to-login-btn');
+const btnBackToFiles = document.querySelector('.back-to-allfiles-btn');
+const exitBtn = document.querySelector('.exit__btn');
+
+btnBackToLogin.addEventListener('click', autorizationScreen);
+exitBtn.addEventListener('click', autorizationScreen);
+
+btnBackToFiles.addEventListener('click', showAllFilesScreen);
+
+// upDateTheCaseFile(allFilesCases[0]);
 
 // Add Sentence
-// Red Note Sentence
-
+// Red Note Sentence ПОТІМ В РЕД СТАНІ
+/*
 const redNoteFiled = document.querySelector('.red-note-filed');
 const redBtnAdd = document.querySelector('.red-btn-add');
 
@@ -416,11 +442,11 @@ const writeSentence = function () {
 };
 
 redBtnAdd.addEventListener('click', writeSentence);
-
+*/
 /////////////////////////////////////////////////////
 ////// Анімація шінігамі
-document.addEventListener('DOMContentLoaded', e => {
-  e.preventDefault();
+
+const animateShinigamiEyes = function () {
   const animatedTimers = document.querySelectorAll('.red-eyes-shinigami-timer');
 
   animatedTimers.forEach(timer => {
@@ -440,17 +466,9 @@ document.addEventListener('DOMContentLoaded', e => {
       }
 
       span.style.animationDelay = `${Math.random()}s`;
-
       span.style.animationDuration = `${1.5 + Math.random()}s`;
 
       timer.appendChild(span);
     });
   });
-});
-
-const time = function () {
-  const t = Math.round(Math.random() * 888888 + 100000);
-  console.log(t);
 };
-
-time();
