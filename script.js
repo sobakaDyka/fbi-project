@@ -1,6 +1,6 @@
 'use strict';
 ///////////////////// Elements ////////////////////
-let isRedStateActive = false; // пізда тобі мразь йобана
+let isRedStateActive = false; //
 const START_TIME = 300;
 let time = START_TIME;
 let timerIntervalID;
@@ -348,7 +348,7 @@ class Person {
     localStorage.setItem(`note_${this.fileNo}`, noteText);
   }
 
-  // загрузка ГАВНА
+  // загрузка ПРОФІЛІВ
   getNote() {
     const savedNote = localStorage.getItem(`note_${this.fileNo}`);
     if (savedNote) {
